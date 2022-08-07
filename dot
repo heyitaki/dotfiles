@@ -12,10 +12,9 @@ case $1 in
     ;;
 esac
 
-# Get absolute path to this directory by resolving symlink
-# https://stackoverflow.com/a/4774063
+# Get absolute path to this directory by resolving symlink: https://stackoverflow.com/a/4774063
 SYM_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 DIR_PATH="$( dirname "$( readlink $SYM_PATH/dot )" )"
 
-# Copy dotfile to current location
-[ ! -z "$DOTFILE" ] && cp $DIR_PATH/$DOTFILE ./$DOTFILE
+# Copy dotfile to current location: https://stackoverflow.com/a/3063887/5171218
+[[ ! -z "$DOTFILE" ]] && cp $DIR_PATH/$DOTFILE ./$DOTFILE
