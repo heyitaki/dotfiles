@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# This is utility that copies the specified dotfile to the current directory.
+# 
+# Usage: 
+# > dot prettier
+
+# Resolve CLI arg to dotfile
+case $1 in
+  *prettier*)
+    DOTFILE=.prettierrc
+    ;;
+esac
+
+# Get absolute path to this directory by resolving symlink
+# https://stackoverflow.com/a/4774063
+SYM_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+DIR_PATH="$( dirname "$( readlink $SYM_PATH/dot )" )"
+
+# Copy dotfile to current location
+[ ! -z "$DOTFILE" ] && cp $DIR_PATH/$DOTFILE ./$DOTFILE
